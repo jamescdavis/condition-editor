@@ -52,5 +52,9 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "volta": {
+    "node": "12.14.0",
+    "yarn": "1.21.1"
   }
 }
