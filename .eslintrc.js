@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -49,6 +49,12 @@ module.exports = {
         // https://github.com/mysticatea/eslint-plugin-node/issues/77
         'node/no-unpublished-require': 'off'
       })
+    },
+    {
+      files: ['*.ts'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+      ],
     }
   ]
 };
