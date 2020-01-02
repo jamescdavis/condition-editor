@@ -59,9 +59,17 @@ module.exports = {
       },
     },
     {
+      files: ['*.js'],
+      extends: [
+        'plugin:prettier/recommended',
+      ],
+    },
+    {
       files: ['*.ts'],
       extends: [
         'plugin:@typescript-eslint/recommended',
+        'prettier/@typescript-eslint',
+        'plugin:prettier/recommended',
       ],
     }
   ]
