@@ -69,5 +69,11 @@ module.exports = {
                 'plugin:prettier/recommended',
             ],
         },
+        {
+            files: ['*.d.ts'],
+            rules: {
+                '@typescript-eslint/no-unused-vars': 'off',
+            },
+        },
     ],
 };
