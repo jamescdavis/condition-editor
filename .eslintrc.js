@@ -74,6 +74,7 @@ module.exports = {
             rules: {
                 '@typescript-eslint/no-unused-vars': 'off',
                 '@typescript-eslint/no-explicit-any': 'off',
+                'import/prefer-default-export': 'off',
                 'import/export': 'off',
             },
         },
