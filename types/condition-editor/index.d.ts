@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { PropertyType } from 'condition-editor/models/property';
 
 interface Product {
     id: number;
@@ -14,12 +15,6 @@ interface Property {
     id: number;
     name: string;
     type: PropertyType;
-}
-
-export enum PropertyType {
-    String = 'string',
-    Number = 'number',
-    Enumerated = 'enumerated',
 }
 
 export interface Operator {
