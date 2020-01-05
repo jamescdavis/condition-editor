@@ -78,5 +78,12 @@ module.exports = {
                 'import/export': 'off',
             },
         },
+        {
+            files: ['tests/**/*.ts'],
+            rules: {
+                'no-plusplus': 'off',
+                'no-await-in-loop': 'off',
+            },
+        },
     ],
 };
