@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { PropertyType } from 'condition-editor/models/property';
+import { Id as OperatorId } from 'condition-editor/lib/operator';
 
 interface Product {
     id: number;
@@ -19,7 +20,7 @@ interface Property {
 
 export interface Operator {
     text: string;
-    id: string;
+    id: OperatorId;
 }
 
 interface Datastore {
