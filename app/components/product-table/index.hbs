@@ -1,0 +1,36 @@
+<table
+    data-test-product-table
+    local-class='ProductTable'
+    {{did-insert (perform this.loadProducts)}}
+    {{did-update this.onOperatorUpdate @operator}}
+    {{did-update this.onFilterUpdate @filter}}
+>
+    <thead>
+        <tr>
+            {{#each @properties as |property|}}
+                <th data-test-property-header={{property.id}}>
+                    {{property.name}}
+                </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#if this.loadProducts.isRunning}}
+            {{#each @properties}}
+                <td local-class='Loading'>
+                    Loading...
+                </td>
+            {{/each}}
+        {{else}}
+            {{#each this.products as |product|}}
+                <tr data-test-product-row={{product.id}}>
+                    {{#each @properties as |property|}}
+                        <td data-test-property-value={{property.id}}>
+                            {{get product.propValsByPropId property.id}}
+                        </td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        {{/if}}
+    </tbody>
+</table>

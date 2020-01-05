@@ -1,0 +1,15 @@
+.ProductTable {
+    width: 75vw;
+    margin: 1.5em auto 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.ProductTable th, td {
+    border: 1px solid black;
+    padding: 0.2em;
+}
+
+.Loading {
+    opacity: 50%;
+}
