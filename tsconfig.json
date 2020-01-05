@@ -24,6 +24,9 @@
       "condition-editor/tests/*": [
         "tests/*"
       ],
+      "condition-editor/mirage/*": [
+        "mirage/*"
+      ],
       "condition-editor/*": [
         "app/*"
       ],
