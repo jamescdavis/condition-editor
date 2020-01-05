@@ -1,0 +1,13 @@
+<PowerSelect
+    @placeholder='Select a Property'
+    @searchEnabled={{true}}
+    @searchField='name'
+    @options={{@properties}}
+    @selected={{@property}}
+    @onChange={{@onChange}}
+    as |property|
+>
+    <span data-test-property-chooser={{property.id}}>
+        {{property.name}}
+    </span>
+</PowerSelect>
