@@ -1,0 +1,79 @@
+<div
+    data-test-condition-editor
+    local-class='ConditionEditor'
+    {{did-insert this.buildChangeset}}
+    {{did-update this.buildChangeset this.operator}}
+>
+    <div data-test-property-chooser-box>
+        <PropertyChooser
+            @properties={{@properties}}
+            @property={{this.property}}
+            @onChange={{this.setProperty}}
+        />
+    </div>
+
+    <div data-test-operator-chooser-box>
+        {{#if this.property}}
+            <OperatorChooser
+                @property={{this.property}}
+                @operator={{this.operator}}
+                @onChange={{this.setOperator}}
+            />
+        {{/if}}
+    </div>
+
+    <div data-test-input-box>
+        {{#if this.operator.needsInput}}
+            {{#if this.property.isEnumerated}}
+                {{#if this.operator.multi}}
+                    <PowerSelectMultiple
+                        @searchEnabled={{true}}
+                        @options={{this.property.values}}
+                        @selected={{this.input}}
+                        @onChange={{this.setInput}}
+                        as |input|
+                    >
+                        <span data-test-multi-select-input={{input}}>
+                            {{input}}
+                        </span>
+                    </PowerSelectMultiple>
+                {{else}}
+                    <PowerSelect
+                        @searchEnabled={{true}}
+                        @options={{this.property.values}}
+                        @selected={{this.input}}
+                        @onChange={{this.setInput}}
+                        as |input|
+                    >
+                        <span data-test-single-select-input={{input}}>
+                            {{input}}
+                        </span>
+                    </PowerSelect>
+                {{/if}}
+            {{else}}
+                <Input
+                    data-test-input
+                    local-class='TextInput'
+                    @value={{this.changeset.input}}
+                    {{on 'keydown' (perform this.updateInput)}}
+                />
+            {{/if}}
+        {{/if}}
+    </div>
+
+    <div local-class='ClearButton'>
+        <button
+            data-test-clear-button
+            type='button'
+            {{on 'click' this.clear}}
+        >
+            Clear
+        </button>
+    </div>
+</div>
+
+{{yield (hash
+    property=this.property
+    operator=this.operator
+    input=this.input
+)}}

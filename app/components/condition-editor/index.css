@@ -1,0 +1,26 @@
+.ConditionEditor {
+    display: flex;
+    width: 75vw;
+    margin: auto;
+}
+
+.ConditionEditor > * {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0 1em;
+}
+
+.TextInput {
+    font-size: 14px;
+    line-height: 1.75;
+    width: 100%;
+}
+
+.ClearButton {
+    flex-grow: 0;
+}
+
+.ClearButton > button {
+    font-size: 14px;
+    line-height: 1.75;
+}
