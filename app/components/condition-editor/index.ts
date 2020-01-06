@@ -3,11 +3,13 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import Changeset from 'ember-changeset';
 import { ChangesetDef } from 'ember-changeset/types';
+import lookupValidator from 'ember-changeset-validations';
 import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
 
 import Operator from 'condition-editor/lib/operator';
 import PropertyModel from 'condition-editor/models/property';
+import validationsMap from 'condition-editor/validations/input';
 
 export default class ConditionEditorComponent extends Component {
     @tracked property?: PropertyModel;
@@ -21,12 +23,25 @@ export default class ConditionEditorComponent extends Component {
     @task({ restartable: true })
     updateInput = task(function*(this: ConditionEditorComponent) {
         yield timeout(500);
-        if (this.changeset.isDirty) {
+        if (this.changeset.isDirty && !this.changeset.isInvalid) {
             this.changeset.save({});
         }
     });
 
     @action buildChangeset(): void {
+        if (this.property && this.operator) {
+            const opValidations = validationsMap[this.property.type];
+            if (opValidations) {
+                let validations = opValidations.default;
+                if (this.operator.id in opValidations) {
+                    validations = opValidations[this.operator.id];
+                }
+                if (validations) {
+                    this.changeset = new Changeset(this, lookupValidator(validations), validations) as ChangesetDef;
+                    return;
+                }
+            }
+        }
         this.changeset = new Changeset(this) as ChangesetDef;
     }
 

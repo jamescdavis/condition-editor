@@ -57,6 +57,12 @@
                     @value={{this.changeset.input}}
                     {{on 'keydown' (perform this.updateInput)}}
                 />
+                <div
+                    data-test-validation-messages
+                    local-class='ValidationMessages'
+                >
+                    {{this.changeset.error.input.validation}}
+                </div>
             {{/if}}
         {{/if}}
     </div>

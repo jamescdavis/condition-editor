@@ -16,6 +16,11 @@
     width: 100%;
 }
 
+.ValidationMessages {
+    color: #a00;
+    margin: 0.2em;
+}
+
 .ClearButton {
     flex-grow: 0;
 }
