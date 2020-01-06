@@ -1,1 +1,13 @@
-{{outlet}}
+<h1 local-class='Title'>Condition Editor</h1>
+
+<ConditionEditor
+    @properties={{this.properties}}
+    as |ce|
+>
+    <ProductTable
+        @properties={{this.properties}}
+        @property={{ce.property}}
+        @operator={{ce.operator}}
+        @filter={{ce.input}}
+    />
+</ConditionEditor>
