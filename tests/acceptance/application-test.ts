@@ -111,11 +111,6 @@ module('Acceptance | application', function(hooks) {
         assert.dom('[data-test-product-row]').exists({ count: 1 });
         assert.dom('[data-test-product-row]').containsText('Key');
 
-        await input('foo');
-        assert.dom('[data-test-validation-messages]').hasAnyText();
-        assert.dom('[data-test-product-row]').exists({ count: 1 });
-        assert.dom('[data-test-product-row]').containsText('Key');
-
         await selectOperator(Op.Gt);
 
         await input('0');

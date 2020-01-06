@@ -1,5 +1,5 @@
 import { ValidatorMapFunc } from 'ember-changeset/types';
-import { validateNumber, validateFormat } from 'ember-changeset-validations/validators';
+import { validateFormat } from 'ember-changeset-validations/validators';
 
 import { Id as Op } from 'condition-editor/lib/operator';
 import { PropertyType } from 'condition-editor/models/property';
@@ -25,7 +25,7 @@ const validationsMap: Partial<ValidationsMap> = {
         },
     },
     [PropertyType.Number]: {
-        default: { input: validateNumber({ allowBlank: true, message: 'Must be a number' }) },
+        default: undefined,
         [Op.In]: {
             input: validateFormat({
                 regex: /^\s*\d+(\.\d+)?\s*(,?\s*\d+(\.\d+)?\s*)*$/,

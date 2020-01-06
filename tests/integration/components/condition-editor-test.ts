@@ -202,25 +202,6 @@ module('Integration | Component | condition-editor', function(hooks) {
     test('number validations', async function(this: Context, assert) {
         await selectProperty(this.properties[1]);
         assert.dom('[data-test-selected-property="1"]').exists({ count: 1 });
-        await selectOperator(Op.Eq);
-        assert.dom(`[data-test-selected-operator="${Op.Eq}"]`).exists({ count: 1 });
-        assertsForInputType(assert, InputType.Text);
-
-        await fillIn('[data-test-input]', '1');
-        assert.dom('[data-test-validation-messages]').hasNoText();
-        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('1');
-
-        await fillIn('[data-test-input]', 'a');
-        assert.dom('[data-test-validation-messages]').hasAnyText();
-        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('1');
-
-        await fillIn('[data-test-input]', '2');
-        assert.dom('[data-test-validation-messages]').hasNoText();
-        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('2');
-
         await selectOperator(Op.In);
 
         await fillIn('[data-test-input]', '1,2,3');
