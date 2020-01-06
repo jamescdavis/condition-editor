@@ -32,6 +32,10 @@
     background-color: #f0f6ff;
 }
 
+.ConditionEditor :global(.ember-power-select-selected-item) {
+    white-space: nowrap;
+}
+
 :global(.ember-power-select-option[aria-selected="true"]) {
     color: #777;
     background-color: #f0f6ff;
