@@ -1,13 +1,58 @@
 .ProductTable {
     width: 75vw;
     margin: 1.5em auto 0;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
     table-layout: fixed;
 }
 
+@media(max-width: 768px) {
+    .ProductTable {
+        width: 95vw;
+    }
+}
+
 .ProductTable th, td {
-    border: 1px solid black;
-    padding: 0.2em;
+    padding: 0.2em 0.4em;
+}
+
+.ProductTable th {
+    border-top: 1px solid #555;
+    border-right: 1px solid #555;
+    border-bottom: 1px solid #555;
+    background-color: #5897fb;
+    color: #fff;
+}
+
+.ProductTable th:first-child {
+    border-radius: 6px 0 0 0;
+    border-left: 1px solid #555
+}
+
+.ProductTable th:last-child {
+    border-radius: 0 6px 0 0;
+}
+
+.ProductTable td {
+    border-right: 1px solid #777;
+    border-bottom: 1px solid #777;
+}
+
+.ProductTable td:first-child {
+    border-left: 1px solid #777;
+}
+
+.ProductTable tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+
+.ProductTable tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+.ProductTable tr:nth-child(even) {
+    background-color: #f0f6ff;
 }
 
 .Loading {

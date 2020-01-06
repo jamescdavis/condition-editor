@@ -10,10 +10,44 @@
     margin: 0 1em;
 }
 
+@media(max-width: 768px) {
+    .ConditionEditor {
+        width: 95vw;
+    }
+
+    .ConditionEditor > * {
+        margin: 0 0.25em;
+    }
+
+    .ConditionEditor > *:first-child {
+        margin-left: 0;
+    }
+
+    .ConditionEditor > *:last-child {
+        margin-right: 0;
+    }
+}
+
+.ConditionEditor :global(.ember-power-select-multiple-option) {
+    background-color: #f0f6ff;
+}
+
+:global(.ember-power-select-option[aria-selected="true"]) {
+    color: #777;
+    background-color: #f0f6ff;
+}
+
+.ConditionEditor button {
+    border-radius: 4px;
+}
+
 .TextInput {
-    font-size: 14px;
-    line-height: 1.75;
-    width: 100%;
+    font-size: 90%;
+    line-height: 1.8;
+    width: 95%;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding-left: 8px;
 }
 
 .ValidationMessages {
@@ -26,6 +60,6 @@
 }
 
 .ClearButton > button {
-    font-size: 14px;
+    font-size: 90%;
     line-height: 1.75;
 }

@@ -1,0 +1,16 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14pt;
+}
+
+@media(max-width: 1024px) {
+    body {
+        font-size: 10pt;
+    }
+}
+
+@media(max-width: 768px) {
+    body {
+        font-size: 8pt;
+    }
+}
