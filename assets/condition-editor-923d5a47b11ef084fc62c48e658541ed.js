@@ -168,4 +168,4 @@ if(Array.isArray(r))n=r
 else if("string"==typeof r){if(""===r.trim())return!0
 n=r.replace(/^\s*,\s*|\s*,\s*$/g,"").split(",")}else"number"==typeof r&&(n=[r])
 return!(n.length>0&&n.any((function(e){return Number.isNaN(parseFloat(e))})))||(e.message||"Must be a list of numbers")}}})),define("condition-editor/config/environment",[],(function(){try{var e="condition-editor/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),r={default:JSON.parse(decodeURIComponent(t))}
-return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("condition-editor/app").default.create({name:"condition-editor",version:"0.0.0+2972ee50"})
+return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("condition-editor/app").default.create({name:"condition-editor",version:"0.0.0+7c5bc2ea"})
