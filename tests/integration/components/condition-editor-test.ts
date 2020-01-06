@@ -155,4 +155,107 @@ module('Integration | Component | condition-editor', function(hooks) {
         assertsForInputType(assert, InputType.Text);
         assert.dom('[data-test-input-value]').hasNoText();
     });
+
+    test('string validations', async function(this: Context, assert) {
+        await selectProperty(this.properties[0]);
+        assert.dom('[data-test-selected-property="0"]').exists({ count: 1 });
+        await selectOperator(Op.In);
+        assert.dom(`[data-test-selected-operator="${Op.In}"]`).exists({ count: 1 });
+        assertsForInputType(assert, InputType.Text);
+
+        await fillIn('[data-test-input]', 'foo');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo');
+
+        await fillIn('[data-test-input]', 'foo,,bar');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo');
+
+        await fillIn('[data-test-input]', 'foo, ,bar');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo');
+
+        await fillIn('[data-test-input]', ',foo,bar');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo');
+
+        await fillIn('[data-test-input]', 'foo,bar,');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo');
+
+        await fillIn('[data-test-input]', 'foo,bar');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo,bar');
+
+        await fillIn('[data-test-input]', 'foo, bar');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('foo, bar');
+    });
+
+    test('number validations', async function(this: Context, assert) {
+        await selectProperty(this.properties[1]);
+        assert.dom('[data-test-selected-property="1"]').exists({ count: 1 });
+        await selectOperator(Op.Eq);
+        assert.dom(`[data-test-selected-operator="${Op.Eq}"]`).exists({ count: 1 });
+        assertsForInputType(assert, InputType.Text);
+
+        await fillIn('[data-test-input]', '1');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1');
+
+        await fillIn('[data-test-input]', 'a');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1');
+
+        await fillIn('[data-test-input]', '2');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('2');
+
+        await selectOperator(Op.In);
+
+        await fillIn('[data-test-input]', '1,2,3');
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+
+        await fillIn('[data-test-input]', '1,b,3');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+
+        await fillIn('[data-test-input]', '1, ,3');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+
+        await fillIn('[data-test-input]', '1,,3');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+
+        await fillIn('[data-test-input]', ',1,3');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+
+        await fillIn('[data-test-input]', '1,3,');
+        assert.dom('[data-test-validation-messages]').hasAnyText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,2,3');
+
+        await fillIn('[data-test-input]', '1,3');
+        assert.dom('[data-test-validation-messages]').hasNoText();
+        await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
+        assert.dom('[data-test-input-value]').hasText('1,3');
+    });
 });
