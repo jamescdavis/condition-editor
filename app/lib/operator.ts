@@ -64,7 +64,12 @@ export const operators: Operator[] = [
         multi: true,
         compare(value, filter: string | string[]): boolean {
             const filterList = Array.isArray(filter) ? filter : filter.split(',');
-            return typeof value === 'undefined' ? false : filterList.map(val => val.trim()).includes(value.toString());
+            if (typeof value === 'undefined') {
+                return false;
+            }
+            return typeof value === 'number'
+                ? filterList.map(val => parseFloat(val)).includes(value)
+                : filterList.map(val => val.trim()).includes(value.toString());
         },
     },
     {
