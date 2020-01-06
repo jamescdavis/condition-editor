@@ -160,12 +160,12 @@ module('Acceptance | application', function(hooks) {
         assert.dom('[data-test-validation-messages]').hasAnyText();
 
         await input(',1,5');
-        assert.dom('[data-test-product-row]').exists({ count: 2 });
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-product-row]').exists({ count: 3 });
+        assert.dom('[data-test-validation-messages]').hasNoText();
 
         await input('1,5,');
-        assert.dom('[data-test-product-row]').exists({ count: 2 });
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-product-row]').exists({ count: 3 });
+        assert.dom('[data-test-validation-messages]').hasNoText();
 
         await this.chooseProperty('wireless');
 

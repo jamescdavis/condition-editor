@@ -227,12 +227,12 @@ module('Integration | Component | condition-editor', function(hooks) {
         await fillIn('[data-test-input]', ',1,3');
         assert.dom('[data-test-validation-messages]').hasAnyText();
         await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('1,2,3');
+        assert.dom('[data-test-input-value]').hasText(',1,3');
 
         await fillIn('[data-test-input]', '1,3,');
         assert.dom('[data-test-validation-messages]').hasAnyText();
         await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('1,2,3');
+        assert.dom('[data-test-input-value]').hasText('1,3,');
 
         await fillIn('[data-test-input]', '1,3');
         assert.dom('[data-test-validation-messages]').hasNoText();
