@@ -1,0 +1,13 @@
+<PowerSelect
+    @placeholder='Select an Operator'
+    @searchEnabled={{true}}
+    @searchField='text'
+    @options={{this.opsForProp}}
+    @selected={{@operator}}
+    @onChange={{@onChange}}
+    as |operator|
+>
+    <span data-test-operator-chooser={{operator.id}}>
+        {{operator.text}}
+    </span>
+</PowerSelect>
