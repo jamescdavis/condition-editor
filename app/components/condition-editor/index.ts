@@ -10,6 +10,7 @@ import { task } from 'ember-concurrency-decorators';
 import Operator from 'condition-editor/lib/operator';
 import PropertyModel from 'condition-editor/models/property';
 import validationsMap from 'condition-editor/validations/input';
+import config from 'condition-editor/config/environment';
 
 export default class ConditionEditorComponent extends Component {
     @tracked property?: PropertyModel;
@@ -22,7 +23,7 @@ export default class ConditionEditorComponent extends Component {
 
     @task({ restartable: true })
     updateInput = task(function*(this: ConditionEditorComponent) {
-        yield timeout(500);
+        yield timeout(config.environment === 'test' ? 0 : 500);
         if (this.changeset.isDirty && !this.changeset.isInvalid) {
             this.changeset.save({});
         }
