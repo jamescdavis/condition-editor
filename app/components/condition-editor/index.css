@@ -16,7 +16,7 @@
     }
 
     .ConditionEditor > * {
-        margin: 0 0.25em;
+        margin: 0 0.1em;
     }
 
     .ConditionEditor > *:first-child {
@@ -52,14 +52,17 @@
 
 .ValidationMessages {
     color: #a00;
-    margin: 0.2em;
+    margin: 0.25em;
+    font-size: 75%;
 }
 
 .ClearButton {
     flex-grow: 0;
+    margin-left: 0.6em;
 }
 
 .ClearButton > button {
     font-size: 90%;
     line-height: 1.75;
+    background: none;
 }

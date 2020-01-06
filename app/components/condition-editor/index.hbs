@@ -53,6 +53,7 @@
             {{else}}
                 <Input
                     data-test-input
+                    type={{this.inputType}}
                     local-class='TextInput'
                     @value={{this.changeset.input}}
                     {{on 'keydown' (perform this.updateInput)}}

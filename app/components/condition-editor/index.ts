@@ -7,8 +7,8 @@ import lookupValidator from 'ember-changeset-validations';
 import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
 
-import Operator from 'condition-editor/lib/operator';
-import PropertyModel from 'condition-editor/models/property';
+import Operator, { Id as Op } from 'condition-editor/lib/operator';
+import PropertyModel, { PropertyType } from 'condition-editor/models/property';
 import validationsMap from 'condition-editor/validations/input';
 import config from 'condition-editor/config/environment';
 
@@ -44,6 +44,14 @@ export default class ConditionEditorComponent extends Component {
             }
         }
         this.changeset = new Changeset(this) as ChangesetDef;
+    }
+
+    get inputType(): string {
+        return this.property?.type === PropertyType.Number &&
+            this.operator &&
+            [Op.Eq, Op.Gt, Op.Lt].includes(this.operator.id)
+            ? 'number'
+            : 'text';
     }
 
     @action setProperty(property?: PropertyModel): void {
