@@ -179,14 +179,14 @@ module('Integration | Component | condition-editor', function(hooks) {
         assert.dom('[data-test-input-value]').hasText('foo');
 
         await fillIn('[data-test-input]', ',foo,bar');
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-validation-messages]').hasNoText();
         await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('foo');
+        assert.dom('[data-test-input-value]').hasText(',foo,bar');
 
         await fillIn('[data-test-input]', 'foo,bar,');
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-validation-messages]').hasNoText();
         await triggerKeyEvent('[data-test-input]', 'keydown', 'ENTER');
-        assert.dom('[data-test-input-value]').hasText('foo');
+        assert.dom('[data-test-input-value]').hasText('foo,bar,');
 
         await fillIn('[data-test-input]', 'foo,bar');
         assert.dom('[data-test-validation-messages]').hasNoText();

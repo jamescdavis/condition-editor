@@ -74,15 +74,15 @@ module('Acceptance | application', function(hooks) {
         assert.dom('[data-test-product-row]').exists({ count: 2 });
 
         await input(', Key');
-        assert.dom('[data-test-product-row]').exists({ count: 2 });
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-product-row]').exists({ count: 1 });
+        assert.dom('[data-test-validation-messages]').hasNoText();
 
         await input('Key,');
-        assert.dom('[data-test-product-row]').exists({ count: 2 });
-        assert.dom('[data-test-validation-messages]').hasAnyText();
+        assert.dom('[data-test-product-row]').exists({ count: 1 });
+        assert.dom('[data-test-validation-messages]').hasNoText();
 
         await input('Key,,Cup');
-        assert.dom('[data-test-product-row]').exists({ count: 2 });
+        assert.dom('[data-test-product-row]').exists({ count: 1 });
         assert.dom('[data-test-validation-messages]').hasAnyText();
 
         await selectOperator(Op.Contains);

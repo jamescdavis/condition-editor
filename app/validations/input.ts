@@ -1,8 +1,8 @@
 import { ValidatorMapFunc } from 'ember-changeset/types';
-import { validateFormat } from 'ember-changeset-validations/validators';
 
 import { Id as Op } from 'condition-editor/lib/operator';
 import { PropertyType } from 'condition-editor/models/property';
+import validateList from 'condition-editor/validators/list';
 import validateNumberList from 'condition-editor/validators/number-list';
 
 type OpValidationMap = {
@@ -19,10 +19,7 @@ const validationsMap: Partial<ValidationsMap> = {
     [PropertyType.String]: {
         default: undefined,
         [Op.In]: {
-            input: validateFormat({
-                regex: /^[^,]*[^\s,][^,]*(,[^,]*[^\s,][^,]*)*$/,
-                message: 'Must be a comma-separated list',
-            }),
+            input: validateList(),
         },
     },
     [PropertyType.Number]: {
