@@ -29,7 +29,7 @@ export default class ConditionEditorComponent extends Component {
         }
     });
 
-    @action buildChangeset(): void {
+    buildChangeset(): void {
         if (this.property && this.operator) {
             const opValidations = validationsMap[this.property.type];
             if (opValidations) {
@@ -60,10 +60,11 @@ export default class ConditionEditorComponent extends Component {
     }
 
     @action setOperator(operator?: Operator): void {
-        if (this.operator !== operator) {
-            this.operator = operator;
-        }
+        this.operator = operator;
         this.setInput(undefined);
+        if (operator && operator.needsInput) {
+            this.buildChangeset();
+        }
     }
 
     @action setInput(input?: string): void {
